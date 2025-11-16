@@ -38,12 +38,14 @@ def test_age_column_valid(read_csv):
         age = int(row['age'])
         assert 0 <= age <= 100, f"Invalid age {age} for id {row['id']}"
 
+
 @pytest.mark.validate_csv
 def test_email_column_valid(read_csv):
     email_regex = r"[^@]+@[^@]+\.[^@]+"
     for row in read_csv:
         email = row['email']
         assert re.match(email_regex, email), f"Invalid email format: {email} for id {row['id']}"
+
 
 @pytest.mark.validate_csv
 @pytest.mark.xfail(reason="Duplicate rows exist in the file")
@@ -53,6 +55,7 @@ def test_duplicates(read_csv):
         row_tuple = tuple(row.items())
         assert row_tuple not in seen, f"Duplicate row found: {row}"
         seen.add(row_tuple)
+
 
 @pytest.mark.parametrize("id_val, expected_active", [
     ("1", "False"),
@@ -64,6 +67,7 @@ def test_active_players(read_csv, id_val, expected_active):
             assert row['is_active'] == expected_active, (
                 f"Expected is_active={expected_active} for id={id_val}, got {row['is_active']}"
             )
+
 
 def test_active_player(read_csv):
     for row in read_csv:

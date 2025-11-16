@@ -13,6 +13,7 @@ def read_csv(request):
         reader = list(csv.DictReader(f))
     return reader
 
+
 @pytest.fixture(scope="session")
 def validate_schema():
     def _validate(actual_schema, expected_schema):
