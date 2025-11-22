@@ -51,7 +51,7 @@ pipeline {
 
         stage('Archive Parquet Files') {
             steps {
-                archiveArtifacts artifacts: 'parquet_data/*.parquet', allowEmptyArchive: true
+                archiveArtifacts artifacts: '*', allowEmptyArchive: true
             }
         }
 
