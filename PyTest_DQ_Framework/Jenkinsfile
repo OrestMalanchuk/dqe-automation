@@ -49,15 +49,9 @@ pipeline {
             }
         }
 
-        stage('List Workspace Files') {
+        stage('Archive Parquet Files') {
             steps {
-                sh 'ls -R'
-            }
-        }
-
-        stage('Archive All Output Files') {
-            steps {
-                archiveArtifacts artifacts: 'PyTest_DQ_Framework/parquet_data/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'parquet_data/*.parquet', allowEmptyArchive: true
             }
         }
 
