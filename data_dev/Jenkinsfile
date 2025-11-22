@@ -48,6 +48,11 @@ pipeline {
                 }
             }
         }
+        stage('Archive Parquet Files') {
+            steps {
+                archiveArtifacts artifacts: '*', allowEmptyArchive: true
+            }
+        }
     }
     post {
         always {
