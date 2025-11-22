@@ -51,7 +51,7 @@ pipeline {
 
         stage('Archive All Output Files') {
             steps {
-                archiveArtifacts artifacts: 'PyTest_DQ_Framework/output/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'PyTest_DQ_Framework/parquet_data/**', allowEmptyArchive: true
             }
         }
 
