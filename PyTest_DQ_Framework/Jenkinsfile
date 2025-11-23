@@ -77,7 +77,9 @@ pipeline {
                 // If the DQ framework generates files in a different location 
                 // like the one mentioned in the original error, you need 
                 // to archive that specific path:
-                archiveArtifacts artifacts: "${PROJECT_DIR}/parquet_data/*", allowEmptyArchive: true 
+                sh 'ls -l PyTest_DQ_Framework/parquet_data/'
+                // archiveArtifacts artifacts: "${PROJECT_DIR}/parquet_data/*", allowEmptyArchive: true
+                archiveArtifacts artifacts: 'PyTest_DQ_Framework/parquet_data/**'
             }
         }
     }
