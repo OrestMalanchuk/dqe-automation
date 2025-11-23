@@ -6,7 +6,7 @@ pipeline {
         DB_NAME = 'mydatabase'
         PYTHONPATH = "${WORKSPACE}"
         JENKINS_PARQUET_PATH = "/parquet_data"
-        REPORT_DIR = "${WORKSPACE}/PyTest_DQ_Framework/html_report/assets"
+        REPORT_DIR = "/PyTest_DQ_Framework/html_report/assets"
         PROJECT_DIR = "PyTest_DQ_Framework"
     }
 
@@ -86,8 +86,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-            archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
-
         }
         success { echo 'DQ checks were runned!' }
 
