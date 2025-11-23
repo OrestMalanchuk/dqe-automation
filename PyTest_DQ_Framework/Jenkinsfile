@@ -6,7 +6,7 @@ pipeline {
         DB_NAME = 'mydatabase'
         PYTHONPATH = "${WORKSPACE}"
         JENKINS_PARQUET_PATH = "/parquet_data"
-        REPORT_DIR = "/PyTest_DQ_Framework/html_report/assets"
+        REPORT_DIR = "PyTest_DQ_Framework/PyTest_DQ_Framework/html_report/assets"
         PROJECT_DIR = "PyTest_DQ_Framework"
     }
 
@@ -38,7 +38,7 @@ pipeline {
                     set -e
 
                     # Define paths
-                    REPORT_PATH="${WORKSPACE}/${REPORT_DIR}"
+                    REPORT_PATH="${JENKINS_PARQUET_PATH}/${REPORT_DIR}"
                     mkdir -p "$REPORT_PATH"
                     echo "Using parquet path: ${JENKINS_PARQUET_PATH}"
 
@@ -64,28 +64,14 @@ pipeline {
                 '''
             }
         }
-        stage('Archive Results') {
-            steps {
-                // **CORRECTION HERE**
-                // Archive the main HTML report file.
-                // The path is relative to the workspace root.
-                // The resulting archived file will be located at:
-                // PyTest_DQ_Framework/report.html
-                // archiveArtifacts artifacts: "${PROJECT_DIR}/report.html", allowEmpty: false
-                
-                // If the DQ framework generates files in a different location 
-                // like the one mentioned in the original error, you need 
-                // to archive that specific path:
-                sh 'ls -l PyTest_DQ_Framework/parquet_data/'
-                archiveArtifacts artifacts: "${PROJECT_DIR}/parquet_data/*", allowEmptyArchive: true
-                // archiveArtifacts artifacts: 'PyTest_DQ_Framework/parquet_data/**'
-            }
-        }
+        
     }
 
     post {
         always {
             echo 'Pipeline execution completed.'
+            archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
+
         }
         success { echo 'DQ checks were runned!' }
 
