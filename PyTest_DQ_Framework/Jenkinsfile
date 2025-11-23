@@ -65,18 +65,12 @@ pipeline {
                 '''
             }
         }
-        stage('Debug Artifacts') {
-            steps {
-
-                // Specifically list the target directory to verify the files
-                sh 'ls -l PyTest_DQ_Framework/parquet_data/'
-            }
-        }
     }
 
     post {
         always {
             echo 'Pipeline execution completed.'
+            archiveArtifacts artifacts: '/parquet_data' // Archives all .jar files in build/libs and subdirectories
 
         }
         success { echo 'DQ checks were runned!' }
