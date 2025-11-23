@@ -78,7 +78,7 @@ pipeline {
                 // like the one mentioned in the original error, you need 
                 // to archive that specific path:
                 sh 'ls -l PyTest_DQ_Framework/parquet_data/'
-                archiveArtifacts artifacts: "${PROJECT_DIR}/parquet_data/*", allowEmptyArchive: true
+                archiveArtifacts artifacts: "${WORKSPACE}/parquet_data/*", allowEmptyArchive: true
                 // archiveArtifacts artifacts: 'PyTest_DQ_Framework/parquet_data/**'
             }
         }
@@ -87,7 +87,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-           // archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
+            archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
 
         }
         success { echo 'DQ checks were runned!' }
