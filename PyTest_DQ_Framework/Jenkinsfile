@@ -38,7 +38,7 @@ pipeline {
                     set -e
 
                     # Define paths
-                    REPORT_PATH="${JENKINS_PARQUET_PATH}/${REPORT_DIR}"
+                    REPORT_PATH="${WORKSPACE}/${REPORT_DIR}"
                     mkdir -p "$REPORT_PATH"
                     echo "Using parquet path: ${JENKINS_PARQUET_PATH}"
 
