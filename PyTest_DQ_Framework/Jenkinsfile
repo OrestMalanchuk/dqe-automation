@@ -5,7 +5,7 @@ pipeline {
         DB_HOST = 'postgres'
         DB_NAME = 'mydatabase'
         PYTHONPATH = "${WORKSPACE}"
-        JENKINS_PARQUET_PATH = "/parquet_data"
+        JENKINS_PARQUET_PATH = "${PROJECT_DIR}/parquet_data"
         REPORT_DIR = "PyTest_DQ_Framework/html_report/assets"
         PROJECT_DIR = "PyTest_DQ_Framework"
     }
