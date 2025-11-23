@@ -65,11 +65,19 @@ pipeline {
                 '''
             }
         }
-        stage('Build and List') {
+        stage('Archive Results') {
             steps {
-                sh 'make'
-                sh 'ls -l **' // See the files in the workspace
-                archiveArtifacts artifacts: '**' // Then archive them
+                // **CORRECTION HERE**
+                // Archive the main HTML report file.
+                // The path is relative to the workspace root.
+                // The resulting archived file will be located at:
+                // PyTest_DQ_Framework/report.html
+                // archiveArtifacts artifacts: "${PROJECT_DIR}/report.html", allowEmpty: false
+                
+                // If the DQ framework generates files in a different location 
+                // like the one mentioned in the original error, you need 
+                // to archive that specific path:
+                archiveArtifacts artifacts: "${PROJECT_DIR}/parquet_data/*", allowEmpty: true 
             }
         }
     }
