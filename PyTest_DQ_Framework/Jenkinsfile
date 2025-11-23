@@ -8,9 +8,16 @@ pipeline {
         JENKINS_PARQUET_PATH = "/parquet_data"
         REPORT_DIR = "${WORKSPACE}/PyTest_DQ_Framework/html_report/assets"
         PROJECT_DIR = "PyTest_DQ_Framework"
+        POSTGRES_SECRET = credentials('jenkins-postgres-credentials')
     }
 
     stages {
+        stage('Show Credentials') {
+            steps {
+                echo "Postgres user: ${POSTGRES_SECRET_USR}"
+            }
+        }
+        
         stage('Prepare System') {
             steps {
                 sh '''
@@ -55,8 +62,8 @@ pipeline {
 
                     pytest \\
                         --db_host "${DB_HOST}" \\
-                        --db_user "myuser" \\
-                        --db_password "mypassword" \\
+                        --db_user "${POSTGRES_SECRET_USR}" \\
+                        --db_password "${POSTGRES_SECRET_PSW}" \\
                         --db_name "${DB_NAME}" \\
                         --db_port 5432 \\
                         --html="$REPORT_FILE" \\
