@@ -67,7 +67,7 @@ pipeline {
         }
         stage('Archive Parquet Files') {
             steps {
-                archiveArtifacts artifacts: 'PyTest_DQ_Framework/parquet_data/*', allowEmptyArchive: true
+                archiveArtifacts artifacts: '**/*.html', allowEmptyArchive: true
             }
         }
     }
