@@ -7,8 +7,8 @@ pipeline {
         DB_NAME = 'mydatabase'
         PYTHONPATH = "${WORKSPACE}"
         JENKINS_PARQUET_PATH = "/parquet_data"
-        REPORT_DIR = "reports"
-        PROJECT_DIR = "PyTest DQ Framework"
+        REPORT_DIR = "PyTest_DQ_Framework/PyTest_DQ_Framework/html_report/assets"
+        PROJECT_DIR = "PyTest_DQ_Framework"
     }
 
     stages {
