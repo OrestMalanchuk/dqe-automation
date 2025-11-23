@@ -65,12 +65,19 @@ pipeline {
                 '''
             }
         }
+        stage('Build and List') {
+            steps {
+                sh 'make'
+                sh 'ls -l **' // See the files in the workspace
+                archiveArtifacts artifacts: '**' // Then archive them
+            }
+        }
     }
 
     post {
         always {
             echo 'Pipeline execution completed.'
-            archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
+           // archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
 
         }
         success { echo 'DQ checks were runned!' }
