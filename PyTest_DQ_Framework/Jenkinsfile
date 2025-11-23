@@ -60,7 +60,6 @@ pipeline {
                         --db_name "${DB_NAME}" \\
                         --db_port 5432 \\
                         --html="$REPORT_FILE" \\
-                        --self-contained-html -v || true
                     echo "Report generated: $REPORT_FILE"
                 '''
             }
@@ -87,7 +86,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-           // archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
+            archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
 
         }
         success { echo 'DQ checks were runned!' }
