@@ -60,7 +60,6 @@ pipeline {
                         --db_name "${DB_NAME}" \\
                         --db_port 5432 \\
                         --html="$REPORT_FILE" \\
-                        --self-contained-html -v || true
                     echo "Report generated: $REPORT_FILE"
                 '''
             }
