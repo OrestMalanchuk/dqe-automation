@@ -70,7 +70,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-            archiveArtifacts artifacts: '/parquet_data' // Archives all .jar files in build/libs and subdirectories
+            archiveArtifacts artifacts: '**' // Archives all .jar files in build/libs and subdirectories
 
         }
         success { echo 'DQ checks were runned!' }
