@@ -60,14 +60,7 @@ pipeline {
                     export PYTHONPATH="${WORKSPACE}"
                     export PARQUET_ROOT_PATH="${JENKINS_PARQUET_PATH}"
 
-                    pytest \\
-                        --db_host "${DB_HOST}" \\
-                        --db_user "${DB_CREDENTIALS_USR}" \\
-                        --db_password "${DB_CREDENTIALS_PSW}" \\
-                        --db_name "${DB_NAME}" \\
-                        --db_port 5434 \\
-                        --html="$REPORT_FILE" \\
-                        --self-contained-html -v || true
+                    pytest --db_host=localhost --db_port=5434 --db_name=mydatabase --db_user=myuser --db_password=mypassword --html=PyTest_DQ_Framework/html_report/index.html
 
                     echo "Report generated: $REPORT_FILE"
                 '''
