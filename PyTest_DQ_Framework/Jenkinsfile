@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        DB_CREDENTIALS = credentials('db')
         DB_HOST = 'postgres'
         DB_NAME = 'mydatabase'
         PYTHONPATH = "${WORKSPACE}"
@@ -33,12 +32,6 @@ pipeline {
             }
         }
 
-        stage('Debug Credentials') {
-            steps {
-                echo "DB Username: ${DB_CREDENTIALS_USR}"
-            }
-        }
-
         stage('Run Data Quality Tests') {
             steps {
                 sh '''
@@ -60,8 +53,14 @@ pipeline {
                     export PYTHONPATH="${WORKSPACE}"
                     export PARQUET_ROOT_PATH="${JENKINS_PARQUET_PATH}"
 
-                    pytest --db_host=localhost --db_port=5434 --db_name=mydatabase --db_user=myuser --db_password=mypassword --html=PyTest_DQ_Framework/html_report/index.html
-
+                    pytest \\
+                        --db_host "${DB_HOST}" \\
+                        --db_user "myuser" \\
+                        --db_password "mypassword" \\
+                        --db_name "${DB_NAME}" \\
+                        --db_port 5432 \\
+                        --html="$REPORT_FILE" \\
+                        --self-contained-html -v || true
                     echo "Report generated: $REPORT_FILE"
                 '''
             }
