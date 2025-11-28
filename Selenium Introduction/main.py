@@ -10,3 +10,6 @@ def run_script(script_name):
 if __name__ == "__main__":
     run_script('main_table.py')
     run_script('main_chart.py')
+
+
+### JUST RUN main.py ###

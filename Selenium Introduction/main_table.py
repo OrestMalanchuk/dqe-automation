@@ -79,7 +79,7 @@ def extract_table_to_csv(html_file_path, csv_file_path):
 
             # 3. Write the extracted headers and data to a CSV file.
             table_result = pd.DataFrame({k: pd.Series(v) for k, v in data.items()})
-            table_result.to_csv("otput_table/table.csv", index=False)
+            table_result.to_csv("output_table/table.csv", index=False)
             print("Table saved to table.csv")
 
             print(f"Table content has been successfully saved to {csv_file_path}")
@@ -99,3 +99,5 @@ if __name__ == "__main__":
     csv_output_file = "output_table/table.csv"
 
     extract_table_to_csv(html_report_file, csv_output_file)
+
+# JUST RUN main.py
