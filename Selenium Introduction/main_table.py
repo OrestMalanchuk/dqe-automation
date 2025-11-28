@@ -99,3 +99,5 @@ if __name__ == "__main__":
     csv_output_file = "output_table/table.csv"
 
     extract_table_to_csv(html_report_file, csv_output_file)
+
+# JUST RUN main.py

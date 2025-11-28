@@ -12,4 +12,4 @@ if __name__ == "__main__":
     run_script('main_chart.py')
 
 
-    ### JUST RUN main.py ###
+### JUST RUN main.py ###

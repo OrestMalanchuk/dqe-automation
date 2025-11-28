@@ -84,3 +84,5 @@ driver = webdriver.Chrome()
 full_html_path = 'file://' + os.path.abspath("report.html")
 driver.get(full_html_path)
 interact_doughnut_chart_with_legend(driver)
+
+# JUST RUN main.py
