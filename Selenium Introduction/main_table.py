@@ -95,7 +95,7 @@ def extract_table_to_csv(html_file_path, csv_file_path):
 
 
 if __name__ == "__main__":
-    html_report_file = "report.html"
+    html_report_file = "../Robot_Framework/source_report.html"
     csv_output_file = "output_table/table.csv"
 
     extract_table_to_csv(html_report_file, csv_output_file)

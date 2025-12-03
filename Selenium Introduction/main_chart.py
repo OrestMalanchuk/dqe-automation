@@ -81,7 +81,7 @@ def interact_doughnut_chart_with_legend(driver, chart_selector='svg', legend_sel
 
 from selenium import webdriver
 driver = webdriver.Chrome()
-full_html_path = 'file://' + os.path.abspath("report.html")
+full_html_path = 'file://' + os.path.abspath("../Robot_Framework/source_report.html")
 driver.get(full_html_path)
 interact_doughnut_chart_with_legend(driver)
 

@@ -133,10 +133,10 @@ class ReportGenerator:
         """
         Writes the generated figure to an HTML file in the specified storage path.
 
-        The file is named "report.html".
+        The file is named "source_report.html".
         """
         os.makedirs(report_generator_config.storage_path, exist_ok=True)
-        pio.write_html(self.fig, file=os.path.join(report_generator_config.storage_path, "report.html"),
+        pio.write_html(self.fig, file=os.path.join(report_generator_config.storage_path, "source_report.html"),
                        auto_open=False)
 
     def generate_report(self):
